@@ -1,12 +1,14 @@
 package com.ipiEcole.audiotheque.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Artist {
+public abstract class Artist implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,10 @@ public class Artist {
 
     private String name;
 
+
+    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("artist")
+    private Set<Album> albums= new HashSet<>();
     public Artist(){
 
     }
@@ -37,6 +43,14 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
     }
 
     @Override
