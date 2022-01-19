@@ -8,12 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public abstract class Artist implements Serializable {
+@Table(name = "artist")
+public class Artist {
 
     @Id
+    @Column(name = "ArtistId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
+    @Column(name = "Name")
     private String name;
 
 
@@ -24,16 +27,11 @@ public abstract class Artist implements Serializable {
 
     }
 
-    public Artist(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

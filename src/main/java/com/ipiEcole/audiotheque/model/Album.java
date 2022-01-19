@@ -3,23 +3,20 @@ package com.ipiEcole.audiotheque.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "album")
 public class Album {
 
     @Id
+    @Column(name = "AlbumId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "Title")
     private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ArtistId")
     private Artist artist;
-
-    public Album(Integer id, String title, Artist artist) {
-        this.id = id;
-        this.title = title;
-        this.artist = artist;
-    }
 
     public Album() {
 
