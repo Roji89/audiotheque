@@ -3,6 +3,7 @@ package com.ipiEcole.audiotheque.controller;
 
 import com.ipiEcole.audiotheque.model.Artist;
 import com.ipiEcole.audiotheque.repository.ArtistRepository;
+import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,10 +54,9 @@ public class ArtistController {
     ){
         Artist artistName = artistRepository.findByName(name);
 
-        if (artistName == null){
+        if (artistName == null ){
             throw new EntityNotFoundException("artist with this name : " + name + " not found.");
         }
-
         return artistName;
     }
     //search the name in searchbar
