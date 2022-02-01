@@ -7,15 +7,15 @@ import javax.persistence.*;
 public class Album {
 
     @Id
-    @Column(name = "AlbumId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ArtistId")
+    @JoinColumn(name = "artist_id")
     private Artist artist;
 
     public Album() {
